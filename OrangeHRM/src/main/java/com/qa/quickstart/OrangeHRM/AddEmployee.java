@@ -18,7 +18,8 @@ public class AddEmployee {
 	@FindBy(id = "btnSave") private WebElement saveButton;
 	@FindBy(id = "user_password") private WebElement password;
 	@FindBy(id = "re_password") private WebElement confirmPassword;
-	@FindBy(id = "content") private WebElement heading;
+	@FindBy(xpath = "//*[@id=\"content\"]/div/div[1]/h1") private WebElement heading;
+	
 	
 	
 	
@@ -53,6 +54,14 @@ public class AddEmployee {
 	
 	public void save(Actions action) {
 		action.click(saveButton).perform();
+	}
+	
+	public String getHeading() {
+		return heading.getText();
+	}
+	
+	public String getFirstName() {
+		return firstName.getText();
 	}
 	
 

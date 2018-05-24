@@ -28,14 +28,16 @@ public class OrangeTesting {
 	
 	@Before					//This is broken and does not run
 	private void setup() {					
-//	System.setProperty("webdriver.chrome.driver", "C:\\Users\\Admin\\WebDrivers\\chromedriver.exe");
-//	driver = new ChromeDriver();	
-//	action = new Actions(driver);
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Admin\\WebDrivers\\chromedriver.exe");
+		driver = new ChromeDriver();	
+		action = new Actions(driver);
 		System.out.println("Before ran");
 	}
 	
 	@After					//This is broken and does not run
 	private void tearDown() {
+		extent.endTest(test);
+		extent.flush();
 		driver.quit();
 		System.out.println("After ran");
 	}
@@ -67,13 +69,28 @@ public class OrangeTesting {
 	    
 	    addEmployee = PageFactory.initElements(driver, AddEmployee.class); 
 		
-		//assertEquals("Add Employee", addEmployee.findHeader(driver));
+//		assertEquals("Add Employee" , addEmployee.getHeading());
+//		String expected = "Add Employee";
+//		if (expected.equals(addEmployee.getHeading())) {
+//			test.log(LogStatus.PASS, "On add employee page");
+//		}
+//		else {
+//			test.log(LogStatus.FAIL, "Not on add employee page");
+//		}
 	}
 
 	@When("^I fill out the Employee Details correctly$")
 	public void i_fill_out_the_Employee_Details_correctly() throws Throwable {
 		addEmployee.fillDetails(action);
-	    
+//		String testname = "John";
+//		assertEquals(testname, addEmployee.getFirstName());
+//		if (testname.equals(addEmployee.getHeading())) {
+//			test.log(LogStatus.PASS, "On add employee page");
+//		}
+//		else {
+//			test.log(LogStatus.FAIL, "Not on add employee page");
+//		}
+//	    
 	}
 
 	@When("^I choose to create Login Details$")
@@ -95,7 +112,9 @@ public class OrangeTesting {
 	public void i_can_see_information_about_the_user() throws Throwable {
 		//Thread.sleep(5000);
 		PersonalDetails pd = PageFactory.initElements(driver, PersonalDetails.class);
-		//assertEquals("John", pd.getFirstName());
+		assertEquals("John Doe", pd.getFirstName());
+		
+		
 		extent.endTest(test);
 		extent.flush();
 		driver.quit();

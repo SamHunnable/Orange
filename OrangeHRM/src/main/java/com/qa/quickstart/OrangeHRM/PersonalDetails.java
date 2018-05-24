@@ -7,12 +7,12 @@ import org.openqa.selenium.support.FindBy;
 public class PersonalDetails {
 	
 	
-	@FindBy(id = "personal_txtEmpFirstName") private WebElement firstName;
+	@FindBy(xpath = "//*[@id=\"profile-pic\"]/h1") private WebElement firstName;
 	
 	
 	
 	public String getFirstName() {
-		return firstName.getText().toString();
+		return firstName.getText();
 	}
 
 }
